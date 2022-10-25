@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <%- include('head') %>
+  <body>
+    <h2>Log in to your account</h2>
+
+    <% if (locals.errors) { %>
+      <% errors.forEach(function (error) { %>
+          <p class="validation-messages">
+              <%= error.msg %>
+          </p>
+      <% }); %>
+    <% }; %>
+
+    <form method="POST" action="">
+      <label for="username">Username</label>
+      <input name="username" placeholder="username" />
+
+      <label for="password">Password</label>
+      <input type="password" name="password" placeholder="password" />
+
+      <button>Log In</button>
+    </form>
+  </body>
+</html>

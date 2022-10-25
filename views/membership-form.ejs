@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <%- include('head') %>
+  <body>
+    <h2>Become a member</h2>
+    <h3>
+      To become a member you need to have received a secret membership key from
+      the site administrator.
+    </h3>
+
+    <% if (locals.errors) { %>
+      <% errors.forEach(function (error) { %>
+          <p class="validation-messages">
+              <%= error.msg %>
+          </p>
+      <% }); %>
+    <% }; %>
+
+    <form method="POST" action="">
+      <label for="memberKey">Enter Membership Key: </label>
+      <input name="memberKey" placeholder="Member Key" />
+
+      <p>To optionally gain admin priviledges, enter your admin key here: (If you don't have an admin key, leave this field blank.)</p>
+      <label for="adminKey">Enter Admin Key:</label>
+      <input type="adminKey" name="adminKey" placeholder="Admin Key" />
+
+      <button>Become a member</button>
+    </form>
+  </body>
+</html>

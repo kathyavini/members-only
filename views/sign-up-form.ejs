@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <%- include('head') %>
+  <body>
+    <h2>Sign up for an account</h2>
+
+    <% if (locals.errors) { %>
+        <% errors.forEach(function (error) { %>
+            <p class="validation-messages">
+                <%= error.msg %>
+            </p>
+        <% }); %>
+    <% }; %>
+
+    <form method="POST" action="">
+      <label for="firstname">First Name</label>
+      <input name="firstname" placeholder="Your first name" />
+
+      <label for="lastname">Last Name</label>
+      <input name="Your last name" placeholder="Your last name" />
+
+      <label for="username">Username</label>
+      <input name="username" placeholder="Desired username" />
+
+      <label for="password">Password</label>
+      <input type="password" name="password" placeholder="Pick a password" />
+
+      <label for="passwordConfirm">Password Confirmation</label>
+      <input
+        type="password"
+        name="passwordConfirm"
+        placeholder="Re-enter password"
+      />
+
+      <button>Sign Up</button>
+    </form>
+  </body>
+</html>

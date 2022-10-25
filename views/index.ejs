@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+  <%- include('head') %>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <nav>
+      <a href="/new-message">Post a message</a>
+      <a href="/sign-up">Sign up</a>
+      <a href="/log-in">Log in</a>
+      <a href="/membership">Become a member</a>
+    </nav>
+
+    <% if (locals.messages) { %>
+    <main>
+      <% messages.forEach(function (message) { %>
+        <div class="message">
+          <h3><%= message.author %></h3>
+          <h2><%= message.content %></h2>
+          <p>
+            Posted <%= formatDistanceToNow(message.posted, {includeSectonds:
+            true})%> ago
+          </p>
+        </div>
+      <% }); %>
+    </main>
+    <% } %>
   </body>
 </html>

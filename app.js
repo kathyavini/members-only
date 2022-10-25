@@ -13,6 +13,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
+const formatDistanceToNow = require('date-fns/formatDistanceToNow');
+
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
@@ -25,6 +27,9 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'mongo connection error'));
 
 var app = express();
+
+// For use in view templates
+// app.locals.formatDistanceToNow = formatDistanceToNow;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

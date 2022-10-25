@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <%- include('head') %>
+  <body>
+    <h2>Add a message to the message board</h2>
+
+    <% if (locals.errors) { %>
+      <% errors.forEach(function (error) { %>
+          <p class="validation-messages">
+              <%= error.msg %>
+          </p>
+      <% }); %>
+    <% }; %>
+
+    <form method="POST" action="">
+      <textarea name="msgTxt" placeholder="Your message" required> </textarea>
+      <button>Submit</button>
+    </form>
+  </body>
+</html>
