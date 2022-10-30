@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <%- include('head') %>
+  <body>
+    <h2><%= title %>!</h2>
+
+    <% if (!locals.admin && !locals.member) { %>
+        <p>Membership and/or administrative privileges require a key.</p>
+
+        <p>Please speak to the site administrator if you want to receive one.</p>
+        <% }; %>
+
+    <% if (locals.member) { %>
+    <p>
+      You are now a member of the secret clubhouse! You can view authors and times for messages posted to the message board.
+    </p>
+    <% }; %>
+
+    <% if (locals.admin) { %>
+    <p>
+        You now have clubhouse administrator privileges! You can delete messages that have been posted to the message board.
+    </p>
+    <% }; %>
+
+    <a href="/">Return to Message Board</a>
+  </body>
+</html>

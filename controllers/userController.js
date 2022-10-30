@@ -96,10 +96,47 @@ exports.membership_get = (req, res, next) => {
   res.render('membership-form', { title: 'Become a member' });
 };
 
-exports.membership_post = (req, res, next) => {
+exports.membership_post = [
   // Form validation here
+  body('memberKey')
+    .trim()
+    .optional({ checkFalsy: true })
+    .exists()
+    .escape()
+    .custom((value) => value === process.env.MEMBERSHIP_KEY)
+    .withMessage('Membership Key Incorrect'),
 
-  // Save to database here
+  body('adminKey')
+    .trim()
+    .optional({ checkFalsy: true })
+    .escape()
+    .exists()
+    .custom((value) => value === process.env.ADMIN_KEY)
+    .withMessage('Admin Key Incorrect'),
 
-  res.redirect('/');
-};
+  (req, res, next) => {
+    // Extract the express-validator errors
+    const errors = validationResult(req).array();
+
+    if (errors.length > 0) {
+      // Render the form again with sanitized data and error messages
+      res.render('membership-form', {
+        title: 'Become a Member',
+        errors,
+        keys: {
+          member: req.body.memberKey,
+          admin: req.body.adminKey,
+        },
+      });
+      return;
+    }
+
+    // Save to database here (requires sessions to ID users
+
+    res.render('welcome', {
+      title: req.body.memberKey || req.body.adminKey ? 'Welcome' : 'Key Needed',
+      member: req.body.memberKey ? true : false,
+      admin: req.body.adminKey ? true : false,
+    });
+  },
+];

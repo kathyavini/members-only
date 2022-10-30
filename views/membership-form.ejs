@@ -18,11 +18,19 @@
 
     <form method="POST" action="">
       <label for="memberKey">Enter Membership Key: </label>
-      <input name="memberKey" placeholder="Member Key" />
+      <input
+        type="password"
+        name="memberKey" placeholder="Member Key" value="<%= locals.keys ? keys.member : '' %>"
+      />
 
-      <p>To optionally gain admin priviledges, enter your admin key here: (If you don't have an admin key, leave this field blank.)</p>
+      <p>To optionally gain admin priviledges, enter your admin key here:</p>
       <label for="adminKey">Enter Admin Key:</label>
-      <input type="adminKey" name="adminKey" placeholder="Admin Key" />
+      <input
+        type="password"
+        name="adminKey"
+        placeholder="Admin Key"
+        value="<%= locals.keys ? keys.admin : '' %>"
+      />
 
       <button>Become a member</button>
     </form>
