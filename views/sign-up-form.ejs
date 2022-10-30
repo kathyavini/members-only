@@ -14,21 +14,21 @@
 
     <form method="POST" action="">
       <label for="firstname">First Name</label>
-      <input name="firstname" placeholder="Your first name" />
+      <input name="firstname" placeholder="Your first name" value="<%= locals.user ? user.firstname : '' %>"/>
 
       <label for="lastname">Last Name</label>
-      <input name="Your last name" placeholder="Your last name" />
+      <input name="lastname" placeholder="Your last name" value="<%= locals.user ? user.lastname : '' %>"/>
 
       <label for="username">Username</label>
-      <input name="username" placeholder="Desired username" />
+      <input name="username" placeholder="Desired username" value="<%= locals.user ? user.username : '' %>"/>
 
       <label for="password">Password</label>
-      <input type="password" name="password" placeholder="Pick a password" />
+      <input type="password" name="password" placeholder="Pick a password" value="<%= locals.user ? user.password : '' %>"/>
 
-      <label for="passwordConfirm">Password Confirmation</label>
+      <label for="password_confirm">Password Confirmation</label>
       <input
         type="password"
-        name="passwordConfirm"
+        name="password_confirm"
         placeholder="Re-enter password"
       />
 

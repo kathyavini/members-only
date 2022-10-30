@@ -5,7 +5,7 @@ const { body, validationResult } = require('express-validator');
 
 // Display all messages on home page
 exports.home = (req, res, next) => {
-  console.log('INDEX HERE!');
+  console.log(req.body);
 
   res.render('index', { title: 'Members Only' });
 };
