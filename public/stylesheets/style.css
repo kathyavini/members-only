@@ -24,9 +24,9 @@ a {
 a:hover {
   text-decoration: underline;
 }
-/* a:visited {
+a:visited {
   color: var(--dark-blue);
-} */
+}
 
 button {
   color: white;
@@ -89,4 +89,12 @@ form input, form textarea {
 form fieldset, form label {
   font-weight: 500;
   font-size: .9rem;
+}
+
+.clubhouse-msg {
+  color: var(--dark-pink);
+}
+
+a.pink-link {
+  color: var(--dark-pink);
 }

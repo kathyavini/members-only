@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const { body, validationResult } = require('express-validator');
+const passport = require('passport');
 const bcrypt = require('bcryptjs');
 
 exports.sign_up_get = (req, res, next) => {
@@ -74,7 +75,8 @@ exports.sign_up_post = [
             if (err) {
               return next(err);
             }
-            res.redirect('/');
+            // now log-in with these credentials!
+            res.redirect(307, '/log-in');
           });
         });
       }
@@ -84,12 +86,6 @@ exports.sign_up_post = [
 
 exports.log_in_get = (req, res, next) => {
   res.render('log-in-form', { title: 'Log in to your account' });
-};
-
-exports.log_in_post = (req, res, next) => {
-  // Form validation here
-
-  res.redirect('/');
 };
 
 exports.membership_get = (req, res, next) => {

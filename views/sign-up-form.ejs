@@ -19,6 +19,9 @@
       <label for="lastname">Last Name</label>
       <input name="lastname" placeholder="Your last name" value="<%= locals.user ? user.lastname : '' %>"/>
 
+      <p>Note: When you post a message to the Message Board, clubhouse members (approved by the site administrator) will be able to see your first and last name.</p>
+      <p>Your username is only for logging in and will not be displayed anywhere.</p>
+
       <label for="username">Username</label>
       <input name="username" placeholder="Desired username" value="<%= locals.user ? user.username : '' %>"/>
 

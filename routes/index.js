@@ -17,8 +17,6 @@ router.post('/sign-up', userController.sign_up_post);
 
 router.get('/log-in', userController.log_in_get);
 
-router.post('/log-in', userController.log_in_post);
-
 router.get('/membership', userController.membership_get);
 
 router.post('/membership', userController.membership_post);

@@ -2,6 +2,7 @@
 <html>
   <%- include('head') %>
   <body>
+    <% if (user) { %>
     <h2>Add a message to the message board</h2>
 
     <% if (locals.errors) { %>
@@ -16,5 +17,13 @@
       <textarea name="msgTxt" placeholder="Your message" required> </textarea>
       <button>Submit</button>
     </form>
+
+    <% } else { %>
+      <h2>You must be logged in to post a message.</h2>
+      <nav>
+        <a href="/sign-up">Sign up</a>
+        <a href="/log-in">Log in</a></p>
+      </nav>
+    <% } %>
   </body>
 </html>

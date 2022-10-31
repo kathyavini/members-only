@@ -3,16 +3,34 @@
   <%- include('head') %>
   <body>
     <h1><%= title %></h1>
+    <% if (user) { %>
+      <p>Welcome, <%= user.firstname %>!</p>
+      <% if (user.member) { %>
+        <p class="clubhouse-msg">You are a clubhouse member!</p>
+      <% } else { %>
+        <p>Members of the secret clubhouse can see who authored the messages below and when. Becoming a member is free! But you need to get a secret passcode from the site administrator.</p>
+      <% } %>
+      <nav>
+        <a href="/new-message">Post a message</a>
+        <a href="/log-out">Log out</a>
+        <% if (!user.member) { %>
+          <a class="pink-link" href="/membership">Become a member</a>
+        <% } %>
+      </nav>
+    <% } else { %>
     <p>Welcome to <%= title %></p>
+    <p>To post a message to the message board you need to <a class="pink-link" href="/sign-up">sign up</a> for a free account.</p>
+    <p>Members of the secret clubhouse can see who authored the messages below and when. Becoming a member is also free! But you need to get a secret passcode from the site administrator.</p>
+
     <nav>
-      <a href="/new-message">Post a message</a>
       <a href="/sign-up">Sign up</a>
-      <a href="/log-in">Log in</a>
-      <a href="/membership">Become a member</a>
+      <a href="/log-in">Log in</a></p>
     </nav>
+    <% } %>
 
     <% if (locals.messages) { %>
     <main>
+      <h2>Message Board</h2>
       <% messages.forEach(function (message) { %>
         <div class="message">
           <h3><%= message.author %></h3>
