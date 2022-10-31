@@ -12,6 +12,9 @@
       <% } %>
       <nav>
         <a href="/log-out">Log out</a>
+        <% if (user.member && !user.admin) { %>
+    
+        <% } %>
         <% if (!user.member) { %>
           <a class="pink-link" href="/membership">Become a member</a>
         <% } %>

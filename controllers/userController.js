@@ -114,8 +114,8 @@ exports.membership_post = [
     // Extract the express-validator errors
     const errors = validationResult(req).array();
 
+    // Validator returns errors (incorrect keys)
     if (errors.length > 0) {
-      // Render the form again with sanitized data and error messages
       res.render('membership-form', {
         title: 'Become a Member',
         errors,
@@ -127,12 +127,36 @@ exports.membership_post = [
       return;
     }
 
-    // Save to database here (requires sessions to ID users
+    // Neither key has been provided (form submitted empty)
+    if (!req.body.memberKey && !req.body.adminKey) {
+      res.render('welcome', {
+        title: 'Key Needed',
+        member: false,
+        admin: false,
+      });
+      return;
+    }
 
-    res.render('welcome', {
-      title: req.body.memberKey || req.body.adminKey ? 'Welcome' : 'Key Needed',
-      member: req.body.memberKey ? true : false,
-      admin: req.body.adminKey ? true : false,
+    // One or more keys are correct; update database
+    let update = {};
+
+    if (req.body.memberKey) {
+      update.member = true;
+    }
+
+    if (req.body.adminKey) {
+      update.admin = true;
+    }
+
+    User.findByIdAndUpdate(req.user, update, (err) => {
+      if (err) {
+        return next(err);
+      }
+      res.render('welcome', {
+        title: 'Welcome',
+        member: req.body.memberKey ? true : false,
+        admin: req.body.adminKey ? true : false,
+      });
     });
   },
 ];

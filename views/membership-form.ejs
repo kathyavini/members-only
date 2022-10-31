@@ -2,6 +2,7 @@
 <html>
   <%- include('head') %>
   <body>
+    <% if (user) { %>
     <h2>Become a member</h2>
     <h3>
       To become a member you need to have received a secret membership key from
@@ -34,5 +35,13 @@
 
       <button>Become a member</button>
     </form>
+
+    <% } else { %>
+      <h3>You must already have an account and be logged in to become a clubhouse member.</h3>
+      <nav>
+        <a href="/sign-up">Sign up</a>
+        <a href="/log-in">Log in</a>
+      </nav>
+    <% } %>
   </body>
 </html>
