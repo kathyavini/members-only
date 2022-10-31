@@ -46,6 +46,7 @@ app.use(passport.session());
 // Pass user to all views
 app.use(function (req, res, next) {
   res.locals.user = req.user;
+  res.locals.errorMessages = req.session.messages;
   next();
 });
 
@@ -63,7 +64,8 @@ app.post(
   '/log-in',
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/',
+    failureRedirect: '/log-in',
+    failureMessage: true,
   })
 );
 

@@ -4,11 +4,13 @@
   <body>
     <h2>Log in to your account</h2>
 
-    <% if (locals.errors) { %>
-      <% errors.forEach(function (error) { %>
+    <% if (errorMessages) { %>
+      <% errorMessages.forEach(function (error, index) { %>
+        <% if (index === errorMessages.length - 1) { %>
           <p class="validation-messages">
-              <%= error.msg %>
+              <%= error %>
           </p>
+        <% }; %>
       <% }); %>
     <% }; %>
 
