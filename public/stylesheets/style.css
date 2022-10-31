@@ -24,6 +24,7 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
 a:visited {
   color: var(--dark-blue);
 }
@@ -53,20 +54,22 @@ nav {
   gap: 2rem;
 }
 
+main .message-board {
+  margin-top: 5vh;
+}
+
 
 main .message {
   margin-block: 3rem;
   max-width: min(90vw, 600px);
+  padding: 2vw;
+  border-radius: 6px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 main .message p {
   padding-top: .4rem;
   opacity: .6;
-}
-
-.validation-messages {
-  color: var(--dark-pink);
-  font-weight: 600;
 }
 
 form {
@@ -91,10 +94,35 @@ form fieldset, form label {
   font-size: .9rem;
 }
 
+.validation-messages {
+  color: var(--dark-pink);
+  font-weight: 600;
+}
+
 .clubhouse-msg {
   color: var(--dark-pink);
 }
 
-a.pink-link {
+a.pink-link, span.pink {
   color: var(--dark-pink);
 }
+
+span.dk-blue {
+  color: var(--dark-blue);
+}
+
+span.blue {
+  color: var(--blue);
+}
+
+button.post {
+  margin-top: 2rem;
+  color: var(--dark-blue);
+  border-color: var(--dark-blue);
+  background-color: transparent;
+}
+
+button:focus {
+  outline: 2px solid var(--dark-blue);
+  outline-offset: 1px;
+} 

@@ -10,8 +10,6 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 
-const formatDistanceToNow = require('date-fns/formatDistanceToNow');
-
 const dotenv = require('dotenv');
 
 // Load secure credentials
@@ -23,7 +21,7 @@ require('./config/database');
 var app = express();
 
 // For use in view templates
-// app.locals.formatDistanceToNow = formatDistanceToNow;
+app.locals.formatDistanceToNow = require('date-fns/formatDistanceToNow');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

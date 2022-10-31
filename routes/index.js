@@ -5,7 +5,9 @@ var router = express.Router();
 const messageController = require('../controllers/messageController');
 const userController = require('../controllers/userController');
 
-router.get('/', messageController.home);
+router.get('/', messageController.index);
+
+router.post('/', messageController.message_delete);
 
 router.get('/new-message', messageController.new_message_get);
 

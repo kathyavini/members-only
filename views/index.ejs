@@ -11,34 +11,53 @@
         <p>Members of the secret clubhouse can see who authored the messages below and when. Becoming a member is free! But you need to get a secret passcode from the site administrator.</p>
       <% } %>
       <nav>
-        <a href="/new-message">Post a message</a>
         <a href="/log-out">Log out</a>
         <% if (!user.member) { %>
           <a class="pink-link" href="/membership">Become a member</a>
         <% } %>
       </nav>
+      <a href="/new-message">
+        <button class="post">Post a new message</button>
+      </a>
     <% } else { %>
-    <p>Welcome to <%= title %></p>
+    <p>Welcome to <%= title %>!</p>
     <p>To post a message to the message board you need to <a class="pink-link" href="/sign-up">sign up</a> for a free account.</p>
     <p>Members of the secret clubhouse can see who authored the messages below and when. Becoming a member is also free! But you need to get a secret passcode from the site administrator.</p>
 
     <nav>
       <a href="/sign-up">Sign up</a>
-      <a href="/log-in">Log in</a></p>
+      <a href="/log-in">Log in</a>
     </nav>
     <% } %>
 
-    <% if (locals.messages) { %>
+    <% if (messages) { %>
     <main>
-      <h2>Message Board</h2>
+      <h2 class="message-board">Message Board</h2>
+      <% if (messages.length == 0 && user) { %>
+        <p>There are no messages yet. Why not <a class="pink-link" href="new-message">create the first</a>?</p>
+        <% } %>
       <% messages.forEach(function (message) { %>
         <div class="message">
-          <h3><%= message.author %></h3>
-          <h2><%= message.content %></h2>
-          <p>
-            Posted <%= formatDistanceToNow(message.posted, {includeSectonds:
-            true})%> ago
-          </p>
+          <% if (user && user.member) { %>
+            <h4>
+              <%= message.author.firstname %> <%= message.author.lastname %>
+            </h4>
+          <% } %>
+
+          <h3><%- message.content %></h2>
+
+          <% if (user && user.member) { %>
+            <p>Posted: <%= formatDistanceToNow(message.posted, {includeSectonds:
+              true})%> ago
+            </p>
+          <% } %>
+
+          <% if (user && user.admin) { %>
+            <form method="POST" action="">
+              <input type="hidden" name="messageid" value=<%= message._id %>>
+              <button>Delete Post</button>
+            </form>
+          <% } %>
         </div>
       <% }); %>
     </main>
